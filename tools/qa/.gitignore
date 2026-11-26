@@ -1,0 +1,4 @@
+shots/
+results.json
+*.png
+node_modules/

@@ -218,6 +218,8 @@ def rewrite_html(html, page_local, queue):
             if p.fragment:
                 r += "#" + p.fragment
             return r + trail
+        if p.netloc != HOST and p.path in ("", "/"):
+            return raw  # holý host (např. preconnect) – nic ke stažení
         loc = get_asset(u)
         if not loc:
             return raw
