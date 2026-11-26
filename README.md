@@ -4,6 +4,8 @@ Statická HTML kopie webu <https://spravnymsmerem.czechdesign.cz/> (projekt CZEC
 o orientačních systémech v nemocnicích), převedená z CMS Solidpixels do čistého HTML,
 které se spravuje v tomto repozitáři (např. přes Clauda) a publikuje přes GitHub Pages.
 
+**Živý web:** <https://corrivati.github.io/spravnym-smerem/>
+
 ## Struktura
 
 ```
