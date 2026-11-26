@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Stáhne kompletní statickou kopii webu https://spravnymsmerem.czechdesign.cz
-do složky ./site (nebo jiné předané jako argument).
+do složky ./docs (nebo jiné předané jako argument).
 
 - Projde všechny URL ze sitemap.xml + všechny interní odkazy nalezené na stránkách.
 - Stáhne obrázky (/files), CSS/JS (/assets), ikonový font a masky ze CDN Solidpixels,
@@ -23,7 +23,7 @@ import xml.etree.ElementTree as ET
 
 HOST = "spravnymsmerem.czechdesign.cz"
 BASE = f"https://{HOST}"
-OUT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else "site")
+OUT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else "docs")
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 

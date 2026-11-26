@@ -9,7 +9,7 @@ které se spravuje v tomto repozitáři (např. přes Clauda) a publikuje přes 
 ## Struktura
 
 ```
-site/                     ← vše, co se publikuje
+docs/                     ← vše, co se publikuje
   index.html              ← úvodní stránka
   galerie/ formular/ v8/ vystava/
   blog/<slug>/index.html  ← články a mediální výstupy
@@ -22,7 +22,6 @@ site/                     ← vše, co se publikuje
     fonts/                ← písmo Manrope (Google Fonts)
   sitemap.xml, robots.txt
 tools/mirror.py           ← skript, kterým kopie vznikla (lze spustit znovu)
-.github/workflows/pages.yml ← automatický deploy na GitHub Pages
 ```
 
 Všechny odkazy jsou **relativní**, takže web funguje na GitHub Pages
@@ -31,24 +30,26 @@ Všechny odkazy jsou **relativní**, takže web funguje na GitHub Pages
 
 ## Jak upravovat obsah
 
-- Text článku: uprav `site/blog/<slug>/index.html` (obsah je v bloku `<main>`).
-- Nový obrázek: nahraj do `site/files/` a odkaž relativně (např. `../../files/obrazek.jpg`).
+- Text článku: uprav `docs/blog/<slug>/index.html` (obsah je v bloku `<main>`).
+- Nový obrázek: nahraj do `docs/files/` a odkaž relativně (např. `../../files/obrazek.jpg`).
 - Nový článek: zkopíruj složku existujícího článku, přejmenuj, uprav obsah, přidej
-  odkaz/kartu na úvodní stránku a záznam do `site/sitemap.xml`.
+  odkaz/kartu na úvodní stránku a záznam do `docs/sitemap.xml`.
 - Stačí napsat Claudovi, co změnit – úpravy udělá v souborech a pushne je.
 
 Lokální náhled:
 
 ```bash
-python3 -m http.server -d site 8000
+python3 -m http.server -d docs 8000
 ```
 
 ## Publikace (GitHub Pages)
 
-1. V repozitáři: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. Po pushi do `main` se web automaticky nasadí (workflow `.github/workflows/pages.yml`).
-3. Vlastní doména: **Settings → Pages → Custom domain** (vytvoří soubor `site/CNAME`)
-   a u DNS nastav CNAME na `<účet>.github.io`.
+Web se publikuje přímo ze složky `docs/` ve větvi `main`
+(**Settings → Pages → Source: Deploy from a branch → `main` / `/docs`**).
+Každý push do `main` se během ~1 minuty projeví na webu.
+
+Vlastní doména: **Settings → Pages → Custom domain** (vytvoří soubor `docs/CNAME`)
+a u DNS nastav CNAME na `corrivati.github.io`.
 
 ## Co na statickém webu nefunguje
 
@@ -60,8 +61,8 @@ python3 -m http.server -d site 8000
 ## Nové stažení z původního webu
 
 ```bash
-python3 tools/mirror.py site
+python3 tools/mirror.py docs
 ```
 
 Skript projde `sitemap.xml` i všechny interní odkazy, stáhne soubory a přepíše
-URL na relativní. Pozor: přepíše ruční úpravy ve složce `site/`.
+URL na relativní. Pozor: přepíše ruční úpravy ve složce `docs/`.
